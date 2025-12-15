@@ -8,7 +8,7 @@ import java.net.Socket;
 
 
 /* CLASE USADA PARA LA FASE 1-------------------------------------------------------------------------
-
+*/
 public class Server {
 
     public static void main(String[] args) {
@@ -49,7 +49,7 @@ public class Server {
     }
 }
 
- */
+ //*/
 
 
 /*  CLASE USADA PARA LA FASE 2-------------------------------------------------------------------
@@ -120,7 +120,7 @@ public class Server {
 
 
     // CLASE USADA PARA LA FASE 3 Y 4 ----------------------------------------------------------------------------
-
+/*
     public class Server {
 
         public static void main(String[] args) {
@@ -148,3 +148,5 @@ public class Server {
             }
         }
 }
+
+ */
