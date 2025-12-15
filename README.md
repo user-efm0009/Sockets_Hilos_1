@@ -27,8 +27,10 @@ IntelliJ IDEA - Lenguaje Java
 ## Preguntas
 
 ### 1) ¿Qué ocurre con el Cliente 2?
+      Lo que ocurre con el Cliente 2 es que este se queda bloqueado aunque éste intente conectarse al servidor.
 
 ### 2) ¿Por qué no puede ni siquiera enviar su mensaje?
+      Este no puede conectarse porque el programa es un hilo único y este siempre estará bloqueado, ya que hay un cliente durmiendo los 15 segundos puestos con el Thread.sleep(15000).
 
 ## Buenas prácticas y recomendaciones
 - Hacer un manejo adecuado de excepciones y cerrar sockets en bloques finally/try-with-resources.
@@ -36,7 +38,7 @@ IntelliJ IDEA - Lenguaje Java
 - Añadir timeouts de lectura/escritura si procede para evitar bloqueos indefinidos.
 - Incluir logs con nivel (INFO/DEBUG/ERROR) para facilitar el diagnóstico.
 
-## Integrantes
+## Integrantes del grupo (Grupo 5)
 - Enrique de la Fuente Méndez
 - Daniel Rivera Miranda
 
