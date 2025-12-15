@@ -12,8 +12,6 @@ Este repositorio contiene una implementación de ejemplo de un servidor que acep
 
 > Nota: Ajusta la sección de comandos de compilación/ejecución según el lenguaje y la estructura concreta del repositorio (Java, Python, C, etc.). Si quieres, puedo generar los comandos exactos si me confirmas el lenguaje y la estructura de carpetas.
 
-## Estructura sugerida del repositorio
-
 ## Entorno de Desarrollo Utilizado
 IntelliJ IDEA - Lenguaje Java
 
@@ -30,9 +28,9 @@ IntelliJ IDEA - Lenguaje Java
 
 ## Preguntas
 
-1) ¿Qué ocurre con el Cliente 2?
+### 1) ¿Qué ocurre con el Cliente 2?
 
-2) ¿Por qué no puede ni siquiera enviar su mensaje?
+### 2) ¿Por qué no puede ni siquiera enviar su mensaje?
 
 ## Buenas prácticas y recomendaciones
 - Hacer un manejo adecuado de excepciones y cerrar sockets en bloques finally/try-with-resources.
@@ -44,4 +42,5 @@ IntelliJ IDEA - Lenguaje Java
 - Enrique de la Fuente Méndez
 - Daniel Rivera Miranda
 
-Asignatura: Programación de Servicios y Procesos (PSP)
+## Asignatura
+Programación de Servicios y Procesos (PSP)
