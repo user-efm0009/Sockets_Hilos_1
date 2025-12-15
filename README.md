@@ -10,8 +10,6 @@ Este repositorio contiene una implementación de ejemplo de un servidor que acep
 - Manejo de desconexiones y errores básicos en comunicación de red.
 - Diagnóstico de bloqueos o problemas en clientes específicos (por ejemplo, Cliente 2).
 
-> Nota: Ajusta la sección de comandos de compilación/ejecución según el lenguaje y la estructura concreta del repositorio (Java, Python, C, etc.). Si quieres, puedo generar los comandos exactos si me confirmas el lenguaje y la estructura de carpetas.
-
 ## Entorno de Desarrollo Utilizado
 IntelliJ IDEA - Lenguaje Java
 
