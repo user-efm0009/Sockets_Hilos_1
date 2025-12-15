@@ -3,43 +3,55 @@ package es.medac.s1;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.net.Socket;
+import java.util.Scanner;
 
 public class Client {
 
     public static void main(String[] args) {
 
-        // Host del servidor
-        final String HOST = "localhost"; // TAMBIÉN SE PUEDE PONER SU IP (127.0.0.1)
-
-        // Puerto del servidor
-        final int PORT = 5000;
-
-        DataInputStream in = null;
-        DataOutputStream out = null;
+        // Asegúrate de que este puerto COINCIDE con el de tu Servidor (6000)
+        final String HOST = "localhost";
+        final int PORT = 6000;
 
         try {
+            Scanner s = new Scanner(System.in);
 
+            // Conectar al servidor (Corregido: el puerto es un int, sin comillas)
             Socket socket = new Socket(HOST, PORT);
+            System.out.println("Conectado al servidor en el puerto " + PORT);
 
-            in = new DataInputStream(socket.getInputStream());
-            out = new DataOutputStream(socket.getOutputStream());
+            // inciar los streams
+            DataInputStream input = new DataInputStream(socket.getInputStream());
+            DataOutputStream output = new DataOutputStream(socket.getOutputStream());
 
-            // Enviamos una petición al servidor
-            out.writeUTF("Hola soy el cliente");
+            boolean salir = false;
 
-            // Recibimos la respuesta del servidor
-            String mensaje = in.readUTF();
+            // conversacion bucle
+            while(!salir) {
+                System.out.print("Mensaje a enviar: ");
+                String texto = s.nextLine();
 
-            System.out.println(mensaje);
+                // Enviar mensaje
+                output.writeUTF(texto);
 
-            // Cerramos socket
+                // Comprobar si es FIN
+                if (texto.equalsIgnoreCase("FIN")) { // Ignorecase porsi acaso
+                    salir = true;
+                    System.out.println("Cerrando conexión...");
+                } else {
+                    // Si no es fin, esperar respuesta
+                    String respuesta = input.readUTF();
+                    System.out.println("Servidor: " + respuesta);
+                }
+            }
+
+            // 4. Cerrar recursos al salir del bucle
             socket.close();
+            System.out.println("Conexión terminada con éxito");
+
 
         } catch (Exception e) {
-
-            System.out.println(e.getMessage());
-
+            System.out.println("Error: " + e.getMessage());
         }
     }
-
 }
