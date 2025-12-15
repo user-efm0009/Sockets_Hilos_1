@@ -5,56 +5,146 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.lang.Thread;
+
+
+/* CLASE USADA PARA LA FASE 1-------------------------------------------------------------------------
 
 public class Server {
 
     public static void main(String[] args) {
 
-        ServerSocket servidor = null;
-        Socket sc = null;
+        final int PUERTO = 6000;
 
-        DataInputStream in = null;
-        DataOutputStream out = null;
-
-        final int PUERTO = 5000;
-
-        try {
-
-            servidor = new ServerSocket(PUERTO);
-            System.out.println("Servidor a la espera...");
+        try (ServerSocket server = new ServerSocket(PUERTO)) {
+            System.out.println("--- SERVIDOR FASE 1 (BLOQUEANTE) INICIADO ---");
+            System.out.println("Esperando clientes en el puerto " + PUERTO + "...");
 
             while (true) {
-                // Esperar a que un cliente realice petición
-                sc = servidor.accept();
 
-                Thread.sleep(15000); // FASE 1 - MODIFICACIÓN DE EL SERVIDOR
+                Socket sc = server.accept();
+                System.out.println("Cliente conectado.");
 
-                System.out.println("Cliente conectado con suceso");
+                try {
 
-                in = new DataInputStream(sc.getInputStream());
-                out = new DataOutputStream(sc.getOutputStream());
+                    Thread.sleep(15000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
 
-                // Leo el mensaje del cliente
+                DataInputStream in = new DataInputStream(sc.getInputStream());
+                DataOutputStream out = new DataOutputStream(sc.getOutputStream());
+
                 String mensaje = in.readUTF();
+                System.out.println("Mensaje recibido: " + mensaje);
 
-                System.out.println(mensaje);
+                out.writeUTF("Servidor (después de la siesta): Recibido -> " + mensaje);
 
-                // Envio un mensaje
-                out.writeUTF("Le saludo desde el servidor");
-
-                // Cerrar el socket
                 sc.close();
-                System.out.println("Conexión terminada con suceso");
-
+                System.out.println("Cliente desconectado. Listo para el siguiente.");
             }
 
         } catch (IOException e) {
-
-            throw new RuntimeException(e);
-
+            e.printStackTrace();
         }
+    }
+}
 
+ */
+
+
+/*  CLASE USADA PARA LA FASE 2-------------------------------------------------------------------
+
+public class Server {
+
+
+    public static void main(String[] args) {
+
+
+        final int PUERTO = 6000; //Asignamos el puerto
+
+        try (ServerSocket servidor = new ServerSocket(PUERTO)) {
+            System.out.println("Servidor iniciado en puerto " + PUERTO + ". Esperando...");
+
+            while (true) {
+
+                Socket sc = servidor.accept();
+                System.out.println("Cliente conectado.");
+
+
+                DataInputStream in = new DataInputStream(sc.getInputStream());
+                DataOutputStream out = new DataOutputStream(sc.getOutputStream());
+
+
+                //Corrección de Thread.sleep
+            try {
+                Thread.sleep(15000);
+            }catch(InterruptedException e) {
+                e.printStackTrace();
+            }
+
+                boolean salir = false;
+
+
+                while (!salir) {
+                    try {
+                        // Leeo el mensaje del cliente
+                        String mensaje = in.readUTF();
+
+                        if (mensaje.equalsIgnoreCase("FIN")) {
+                            salir = true;
+                            System.out.println("El cliente ha escrito FIN.");
+                        } else {
+                            System.out.println("Cliente dice: " + mensaje);
+                            // Respondemos al cliente
+                            out.writeUTF("Servidor: He recibido -> " + mensaje);
+                        }
+                    } catch (IOException e) {
+                        // Si el cliente se desconecta de golpe, salimos del bucle
+                        System.out.println("El cliente se desconectó abruptamente.");
+                        salir = true;
+                    }
+                }
+
+
+                sc.close();
+                System.out.println("Cliente desconectado. Esperando al siguiente...");
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
+     */
+
+
+
+    // CLASE USADA PARA LA FASE 3 Y 4 ----------------------------------------------------------------------------
+
+    public class Server {
+
+        public static void main(String[] args) {
+            final int PUERTO = 6000;
+
+            try (ServerSocket servidor = new ServerSocket(PUERTO)) {
+                System.out.println("Servidor MULTIHILO iniciado en puerto " + PUERTO);
+
+                while (true) {
+                    // Esperar la conexion
+                    System.out.println("Esperando nuevo cliente...");
+                    Socket socket = servidor.accept();
+
+                    // Este es el que gestionará al cliente
+                    GestorCliente gestor = new GestorCliente(socket); // [cite: 60]
+
+                    // Esto es para crear el hilo
+                    Thread hilo = new Thread(gestor);
+                    hilo.start(); // uso de start(), porque run() daria error
+
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 }
