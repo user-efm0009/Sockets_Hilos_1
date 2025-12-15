@@ -1,4 +1,4 @@
-# Sockets e Hilos - 1
+# GRUPO 5 - Sockets e Hilos 1
 
 Proyecto práctico de la asignatura Programación de Servicios y Procesos (PSP) que muestra la comunicación cliente‑servidor mediante sockets y la gestión de concurrencia mediante hilos. El objetivo es entender y practicar conceptos básicos de comunicación de red, sincronización y manejo de conexiones concurrentes.
 
