@@ -54,7 +54,7 @@ public class Client {
 
     public static void main(String[] args) {
 
-        // Asegúrate de que este puerto COINCIDE con el de tu Servidor (6000)
+        // Datos de la conexion
         final String HOST = "localhost";
         final int PORT = 6000;
 
