@@ -5,6 +5,51 @@ import java.io.DataOutputStream;
 import java.net.Socket;
 import java.util.Scanner;
 
+/* CLASE USADA PARA LA FASE 1--------------------------------------------------------------------------
+
+public class Client {
+
+    public static void main(String[] args) {
+
+        // Host del servidor
+        final String HOST = "localhost"; // TAMBIÉN SE PUEDE PONER SU IP (127.0.0.1)
+
+        // Puerto del servidor
+        final int PORT = 5000;
+
+        DataInputStream in = null;
+        DataOutputStream out = null;
+
+        try {
+
+            Socket socket = new Socket(HOST, PORT);
+
+            in = new DataInputStream(socket.getInputStream());
+            out = new DataOutputStream(socket.getOutputStream());z
+
+            // Enviamos una petición al servidor
+            out.writeUTF("Hola soy el cliente");
+
+            // Recibimos la respuesta del servidor
+            String mensaje = in.readUTF();
+
+            System.out.println(mensaje);
+
+            // Cerramos socket
+            socket.close();
+
+        } catch (Exception e) {
+
+            System.out.println(e.getMessage());
+
+        }
+    }
+
+}
+ */
+
+
+//  CLASE USADA PARA LAS DEMÁS FASES (2,3 y 4)
 public class Client {
 
     public static void main(String[] args) {
@@ -16,7 +61,7 @@ public class Client {
         try {
             Scanner s = new Scanner(System.in);
 
-            // Conectar al servidor (Corregido: el puerto es un int, sin comillas)
+            // Conectar al servidor
             Socket socket = new Socket(HOST, PORT);
             System.out.println("Conectado al servidor en el puerto " + PORT);
 
@@ -35,7 +80,7 @@ public class Client {
                 output.writeUTF(texto);
 
                 // Comprobar si es FIN
-                if (texto.equalsIgnoreCase("FIN")) { // Ignorecase porsi acaso
+                if (texto.equalsIgnoreCase("FIN")) {
                     salir = true;
                     System.out.println("Cerrando conexión...");
                 } else {
@@ -45,7 +90,7 @@ public class Client {
                 }
             }
 
-            // 4. Cerrar recursos al salir del bucle
+            // Cerrar recursos al salir del bucle
             socket.close();
             System.out.println("Conexión terminada con éxito");
 

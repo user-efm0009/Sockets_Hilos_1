@@ -135,7 +135,7 @@ public class Server {
                     Socket socket = servidor.accept();
 
                     // Este es el que gestionará al cliente
-                    GestorCliente gestor = new GestorCliente(socket); // [cite: 60]
+                    GestorCliente gestor = new GestorCliente(socket);
 
                     // Esto es para crear el hilo
                     Thread hilo = new Thread(gestor);
