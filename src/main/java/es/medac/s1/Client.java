@@ -90,7 +90,7 @@ public class Client {
                 }
             }
 
-            // 4. Cerrar recursos al salir del bucle
+            // Cerrar recursos al salir del bucle
             socket.close();
             System.out.println("Conexión terminada con éxito");
 
