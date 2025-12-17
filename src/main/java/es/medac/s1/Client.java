@@ -61,7 +61,7 @@ public class Client {
         try {
             Scanner s = new Scanner(System.in);
 
-            // Conectar al servidor (Corregido: el puerto es un int, sin comillas)
+            // Conectar al servidor
             Socket socket = new Socket(HOST, PORT);
             System.out.println("Conectado al servidor en el puerto " + PORT);
 
@@ -80,7 +80,7 @@ public class Client {
                 output.writeUTF(texto);
 
                 // Comprobar si es FIN
-                if (texto.equalsIgnoreCase("FIN")) { // Ignorecase porsi acaso
+                if (texto.equalsIgnoreCase("FIN")) {
                     salir = true;
                     System.out.println("Cerrando conexión...");
                 } else {
