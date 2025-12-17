@@ -126,6 +126,8 @@ public class Server {
         public static void main(String[] args) {
             final int PUERTO = 6000;
 
+
+            // abre el ServerSocket en el puerto y lo cierra automáticamente al terminar la conversacion
             try (ServerSocket servidor = new ServerSocket(PUERTO)) {
                 System.out.println("Servidor MULTIHILO iniciado en puerto " + PUERTO);
 
